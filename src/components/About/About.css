@@ -29,6 +29,20 @@
   margin: 0;
 }
 
+@media (max-width: 1200px) {
+  .about__image {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .about__image {
+    width: 310px;
+    height: 310px;
+  }
+}
+
 @media (max-width: 910px) {
   .about {
     padding: 60px 40px;
