@@ -24,11 +24,11 @@ function NewsCard({
         <p className="card__text">{text}</p>
         <p className="card__source">{source}</p>
       </div>
-      <div
+      <button
         className={`card__icon ${
           searching ? 'card__icon_type_save' : 'card__icon_type_delete'
         }`}
-      ></div>
+      ></button>
       {((searching && !loggedIn) || (!searching && loggedIn)) && (
         <div className="card__tooltip">
           {searching

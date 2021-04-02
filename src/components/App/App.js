@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
-// import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import About from '../About/About';
-import SearchForm from '../SearchForm/SearchForm';
-
 import cards from '../../utils/cards';
-import NewsCardList from '../NewsCardList/NewsCardList';
+import Main from '../Main/Main';
+import SavedNews from '../SavedNews/SavedNews';
+import Footer from '../Footer/Footer';
 
 function App() {
-
   return (
-      <div className="app">
-        <SearchForm />
-        <NewsCardList cards={cards}/>
-        <About />
-        <Footer />
-      </div>
+    <div className="app">
+      <Main cards={cards} username="Elsa" searching={true} loggedIn={false} />
+      {/* <SavedNews
+        cards={cards}
+        username="Elsa"
+        searching={false}
+        loggedIn={true}
+      /> */}
+      <Footer />
+    </div>
   );
 }
 

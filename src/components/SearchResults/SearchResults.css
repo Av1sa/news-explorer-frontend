@@ -1,0 +1,31 @@
+.search-results {
+  padding: 80px 104px;
+  background: #f5f6f7;
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.search-results__title {
+  margin-bottom: 64px;
+  width: 100%;
+}
+
+.search-results__button {
+  margin-top: 64px;
+  border-radius: 80px;
+  font-weight: 500;
+  width: 288px;
+  height: 64px;
+  border: none;
+  outline: none;
+  background: #fff;
+}
+
+.search-results__button:hover {
+  cursor: pointer;
+  background: #e8e8e8;
+  opacity: 0.9;
+}

@@ -7,6 +7,10 @@
   padding: 0;
 }
 
+.content-text_type_bold {
+  font-weight: 700;
+}
+
 .content-title {
   font-family: 'Roboto Slab';
   font-weight: 400;
@@ -19,6 +23,26 @@
 @media (max-width: 768px) {
   .content-title {
     font-size: 30px;
-    line-height: 40px;
+    line-height: 34px;
   }
 }
+
+.search-res {
+  padding: 104px;
+  display: flex;
+  justify-content: center;
+  background: #F5F6F7;
+}
+
+@media (max-width: 1440px) {
+  .search-res {
+    padding: 40px;
+  }
+}
+@media (max-width: 320px) {
+  .search-res {
+    padding: 16px;
+  }
+}
+
+

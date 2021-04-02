@@ -2,7 +2,7 @@ import React from 'react';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ cards }) {
+function NewsCardList({ cards, searching, loggedIn }) {
   return (
     <ul className="card-list">
       {cards.map((card) => (
@@ -13,8 +13,8 @@ function NewsCardList({ cards }) {
           text={card.text}
           source={card.source}
           keyword={card.keyword}
-          searching={false}
-          loggedIn={true}
+          searching={searching}
+          loggedIn={loggedIn}
           key={card.id}
         />
       ))}

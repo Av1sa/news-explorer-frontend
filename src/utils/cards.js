@@ -15,12 +15,12 @@ let cards = [
   },
   {
     id: '002',
-    date: 'February 19, 2_019',
+    date: 'February 19, 2019',
     title: 'Nature makes you better',
     text:
       'We all know how good nature can make us feel. We have known it for millennia: the sound of the ocean, the scents of a forest, the way dappled sunlight dances through leaves.',
     source: 'national geographic',
-    keyword: 'Nature',
+    keyword: 'Geo',
     image: cardImg2
     
   },
@@ -33,7 +33,7 @@ let cards = [
     source: 'National parks traveler',
     keyword: 'Parks',
     image: cardImg3
-  },
+  }
 ];
 
 export default cards;

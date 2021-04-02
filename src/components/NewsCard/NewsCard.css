@@ -1,11 +1,10 @@
 .card {
   background: #ffffff;
   border-radius: 16px;
-  width: 400px;
+  max-width: 400px;
   height: 576px;
   overflow: hidden;
   position: relative;
-  margin-right: 16px;
 }
 
 .card__image {
@@ -74,6 +73,8 @@
   position: absolute;
   top: 24px;
   right: 24px;
+  border: none;
+  outline: none;
 }
 
 .card__icon_type_save {
@@ -143,11 +144,9 @@
   display: flex;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .card {
-    width: 224px;
     height: 420px;
-    margin-right: 8px;
   }
 
   .card__image {
@@ -187,11 +186,9 @@
   }
 }
 
-@media(max-width: 320px){
+@media(max-width: 740px){
   .card{
-    width: 288px;
     height: 440px;
-    margin: 0 0 10px;
   }
 
   .card__image {
