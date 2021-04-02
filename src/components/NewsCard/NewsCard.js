@@ -29,14 +29,16 @@ function NewsCard({
           searching ? 'card__icon_type_save' : 'card__icon_type_delete'
         }`}
       ></button>
-      {((searching && !loggedIn) || (!searching && loggedIn)) && (
-        <div className="card__tooltip">
-          {searching
-            ? tooltips.SIGNIN_TO_SAVE_ARTICLES
-            : tooltips.REMOVE_FROM_SAVED}
-        </div>
+      {searching && !loggedIn && (
+        <div className="card__tooltip">{tooltips.SIGNIN_TO_SAVE_ARTICLES}</div>
       )}
-      {!searching && loggedIn && <div className="card__keyword">{keyword}</div>}
+      {!searching && loggedIn && (
+        <>
+          <div className="card__tooltip">{tooltips.REMOVE_FROM_SAVED}</div>
+          <div className="card__keyword">{keyword}</div>
+        </>
+      )}
+      {/* {!searching && loggedIn && } */}
     </li>
   );
 }
