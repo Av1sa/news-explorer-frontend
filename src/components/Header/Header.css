@@ -34,7 +34,7 @@
   font-weight: 500;
 }
 
-.header__url_theme_dark{
+.header__url_theme_dark {
   color: #fff;
 }
 
@@ -56,7 +56,7 @@
   align-items: center;
   justify-content: center;
   padding: 12px 17px;
-  border: 1px solid;
+  border: 1px solid #d1d2d6;
   box-sizing: border-box;
   border-radius: 100px;
   font-weight: 500;
@@ -67,14 +67,19 @@
 .header__button:hover {
   cursor: pointer;
   opacity: 0.7;
+  border: 1px solid #1a1b22;
 }
 
 .header__button#signin {
   width: 176px;
 }
 
-.header__button_theme_dark{
+.header__button_theme_dark {
   color: #fff;
+}
+
+.header__button_theme_dark:hover {
+  border: 1px solid #d1d2d6;
 }
 
 .header__signout-icon {
@@ -97,4 +102,46 @@
   width: 135px;
   height: 3px;
   background-color: #000;
+}
+
+@media (max-width: 930px) {
+  .header {
+    padding: 12px 40px;
+  }
+
+  .header__url {
+    font-size: 16px;
+  }
+
+  .header__button {
+    padding: 8px 14px;
+    font-size: 16px;
+  }
+
+  .header__button#signin {
+    width: 152px;
+    padding: 8px 12px;
+  }
+
+  .header__underline#home {
+    right: 365px;
+  }
+
+  .header__underline#saved {
+    right: 195px;
+  }
+}
+
+@media (max-width: 670px) {
+  .header{
+    padding: 16px;
+  }
+
+  .header__logo{
+    font-size: 16px;
+  }
+
+  .header__underline {
+    display: none;
+  }
 }
