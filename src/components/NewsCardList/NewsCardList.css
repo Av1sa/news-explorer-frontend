@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .card-list {
     grid-gap: 8px;
   }

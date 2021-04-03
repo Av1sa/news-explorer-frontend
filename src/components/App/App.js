@@ -8,13 +8,13 @@ import Footer from '../Footer/Footer';
 function App() {
   return (
     <div className="app">
-      <Main cards={cards} username="Elsa" searching={true} loggedIn={true} />
-      {/* <SavedNews
+      {/* <Main cards={cards} username="Elsa" searching={true} loggedIn={true} /> */}
+      <SavedNews
         cards={cards}
         username="Elsa"
         searching={false}
         loggedIn={true}
-      /> */}
+      />
       <Footer />
     </div>
   );

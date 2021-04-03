@@ -1,6 +1,100 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  padding: 15px 104px;
+  position: relative;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
+}
+
+.header_theme_dark {
+  color: #fff;
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.header__logo {
+  font-family: 'Roboto Slab';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.header__links {
+  display: flex;
+  list-style-type: none;
   align-items: center;
-  padding: 19px 104px 13px;
+  margin: 0;
+  padding: 0;
+}
+
+.header__url {
+  text-decoration: none;
+  color: #1a1b22;
+  font-weight: 500;
+}
+
+.header__url_theme_dark{
+  color: #fff;
+}
+
+.header__url:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__links-item {
+  margin: 0 70px 0 0;
+}
+
+.header__links-item:last-child {
+  margin: 0;
+}
+
+.header__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 17px;
+  border: 1px solid;
+  box-sizing: border-box;
+  border-radius: 100px;
+  font-weight: 500;
+  background: none;
+  outline: none;
+}
+
+.header__button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__button#signin {
+  width: 176px;
+}
+
+.header__button_theme_dark{
+  color: #fff;
+}
+
+.header__signout-icon {
+  margin-left: 15px;
+}
+
+.header__underline#home {
+  position: absolute;
+  top: 96.25%;
+  right: 454px;
+  width: 68px;
+  height: 3px;
+  background-color: #fff;
+}
+
+.header__underline#saved {
+  position: absolute;
+  right: 273px;
+  top: 96.25%;
+  width: 135px;
+  height: 3px;
+  background-color: #000;
 }
