@@ -104,6 +104,10 @@
   background-color: #000;
 }
 
+.header__underline_type_loggedin#home {
+  right: 340px;
+}
+
 @media (max-width: 930px) {
   .header {
     padding: 12px 40px;
@@ -125,6 +129,10 @@
 
   .header__underline#home {
     right: 365px;
+  }
+
+  .header__underline_type_loggedin#home {
+    right: 250px;
   }
 
   .header__underline#saved {

@@ -62,7 +62,16 @@ function Header({ loggedIn, username, isHome }) {
           </li>
         )}
       </ul>
-      <div className="header__underline" id={underlineId}></div>
+      {isHome ? (
+        <div
+          className={`header__underline ${
+            !loggedIn && 'header__underline_type_loggedin'
+          }`}
+          id="home"
+        ></div>
+      ) : (
+        <div className="header__underline" id="saved"></div>
+      )}
     </header>
   );
 }
