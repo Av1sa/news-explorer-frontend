@@ -8,10 +8,10 @@ import Footer from '../Footer/Footer';
 function App() {
   return (
     <div className="app">
-      <Main cards={cards} username="Elsa" searching={true} loggedIn={true} />
+      <Main cards={cards} username="Hamlet" searching={true} loggedIn={true} />
       <SavedNews
         cards={cards}
-        username="Elsa"
+        username="Hamlet"
         searching={false}
         loggedIn={true}
       />

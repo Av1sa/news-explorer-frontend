@@ -4,8 +4,6 @@ import signoutIconDark from '../../images/signout_icon.svg';
 import signoutIconLight from '../../images/signout_icon_white.svg';
 
 function Header({ loggedIn, username, isHome }) {
-  const underlineId = isHome ? 'home' : 'saved';
-  const signoutIcon = isHome ? signoutIconLight : signoutIconDark;
   return (
     <header className={`header ${isHome && 'header_theme_dark'}`}>
       <p className="header__logo">NewsExplorer</p>
@@ -19,6 +17,7 @@ function Header({ loggedIn, username, isHome }) {
           >
             Home
           </a>
+          {isHome && <div className="header__underline" id="home"></div>}
         </li>
         {loggedIn && (
           <li className="header__links-item">
@@ -29,7 +28,8 @@ function Header({ loggedIn, username, isHome }) {
               }`}
             >
               Saved articles
-            </a>
+            </a>{' '}
+            {!isHome && <div className="header__underline" id="saved"></div>}
           </li>
         )}
         {!loggedIn && (
@@ -55,23 +55,13 @@ function Header({ loggedIn, username, isHome }) {
               {username}{' '}
               <img
                 className="header__signout-icon"
-                src={signoutIcon}
+                src={isHome ? signoutIconLight : signoutIconDark}
                 alt="Signout icon"
               ></img>
             </button>
           </li>
         )}
       </ul>
-      {isHome ? (
-        <div
-          className={`header__underline ${
-            !loggedIn && 'header__underline_type_loggedin'
-          }`}
-          id="home"
-        ></div>
-      ) : (
-        <div className="header__underline" id="saved"></div>
-      )}
     </header>
   );
 }
