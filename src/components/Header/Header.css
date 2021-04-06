@@ -1,149 +1,51 @@
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 15px 104px;
-  box-shadow: inset 0px -1px 0px #d1d2d6;
-}
-
-.header_theme_dark {
-  color: #fff;
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-}
-
-.header__logo {
-  font-family: 'Roboto Slab';
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  margin: 0;
-}
-
-.header__links {
-  display: flex;
-  list-style-type: none;
+  flex-direction: column;
   align-items: center;
-  margin: 0;
+  color: #fff;
+  padding: 80px;
+}
+
+.header__title {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  width: 608px;
+  margin: 0 0 32px;
   padding: 0;
 }
 
-.header__url {
-  text-decoration: none;
-  color: #1a1b22;
-  font-weight: 500;
+.header__description {
+  margin-bottom: 88px;
+  width: 608px;
 }
 
-.header__url_theme_dark {
-  color: #fff;
-}
-
-.header__url:hover {
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.header__links-item {
-  margin: 0 70px 0 0;
-  position: relative;
-}
-
-.header__links-item:last-child {
-  margin: 0;
-}
-
-.header__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 17px;
-  border: 1px solid #d1d2d6;
-  box-sizing: border-box;
-  border-radius: 100px;
-  font-weight: 500;
-  background: none;
-  outline: none;
-}
-
-.header__button:hover {
-  cursor: pointer;
-  opacity: 0.7;
-  border: 1px solid #1a1b22;
-}
-
-.header__button#signin {
-  width: 176px;
-}
-
-.header__button_theme_dark {
-  color: #fff;
-}
-
-.header__button_theme_dark:hover {
-  border: 1px solid #d1d2d6;
-}
-
-.header__signout-icon {
-  margin-left: 15px;
-}
-
-.header__underline {
-  position: absolute;
-  bottom: -27px;
-  right: -10px;
-  height: 3px;
-}
-
-.header__underline#home {
-  width: 68px;
-  background-color: #fff;
-}
-
-.header__underline#saved {
-  width: 135px;
-  height: 3px;
-  background-color: #000;
-}
-
-@media (max-width: 930px) {
+@media (max-width: 768px) {
   .header {
-    padding: 12px 40px;
+    padding: 38px 38px 48px;
   }
-
-  .header__url {
-    font-size: 16px;
+  .header__title {
+    max-width: 452px;
+    margin: 0 0 16px;
+    font-size: 36px;
+    line-height: 40px;
   }
-
-  .header__button {
-    padding: 8px 14px;
-    font-size: 16px;
-  }
-
-  .header__button#signin {
-    width: 152px;
-    padding: 8px 12px;
-  }
-
-  .header__underline#home {
-    right: -12px;
-    bottom: -21px;
-  }
-
-  .header__underline#saved {
-    right: -18px;
-    bottom: -21px;
+  .header__description {
+    max-width: 452px;
+    margin-bottom: 48px;
   }
 }
 
-@media (max-width: 670px) {
+@media (max-width: 500px) {
   .header {
-    padding: 16px;
+    padding: 30px 16px;
   }
-
-  .header__logo {
-    font-size: 16px;
+  .header__title {
+    max-width: fit-content;
   }
-
-  .header__underline {
-    display: none;
+  .header__description {
+    margin-bottom: 122px;
+    max-width: fit-content;
   }
 }
