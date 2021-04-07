@@ -47,9 +47,19 @@ function App() {
 
   const handleSigninSubmit = () => {
     setLoggedIn(true);
+    setSigninPopupOpen(false);
+  };
+  const handleSignupSubmit = () => {
+    setIsSuccessTooltipOpen(true);
+    setSignupPopupOpen(false);
   };
 
   const handleSigninBtnClick = () => {
+    setSigninPopupOpen(true);
+  };
+
+  const handleTooltipLinkClick = () => {
+    setIsSuccessTooltipOpen(false);
     setSigninPopupOpen(true);
   };
 
@@ -86,12 +96,14 @@ function App() {
         isOpen={signupPopupOpen}
         onClose={closeAllPopups}
         onSignupPopupLinkClick={handleSignupPopupLinkClick}
+        onSignupSubmit={handleSignupSubmit}
       />
       <InfoTooltip
         isOpen={isSuccessTooltipOpen}
         onClose={closeAllPopups}
         type="success"
         handleClick={null}
+        onLinkClick={handleTooltipLinkClick}
       />
       <InfoTooltip
         isOpen={isErrorTooltipOpen}

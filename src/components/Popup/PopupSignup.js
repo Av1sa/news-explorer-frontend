@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './Popup.css';
 import PopupWithForm from './PopupWithForm';
 
-function PopupSignup({ isOpen, onClose, onSignupPopupLinkClick }) {
+function PopupSignup({ isOpen, onClose, onSignupPopupLinkClick, onSignupSubmit }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    onSignupSubmit()
   };
   const handleLinkClick = () => {
     onSignupPopupLinkClick();
