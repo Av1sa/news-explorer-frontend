@@ -1,39 +1,54 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 import signoutIconDark from '../../images/signout_icon.svg';
 import signoutIconLight from '../../images/signout_icon_white.svg';
 
-function Navigation({ loggedIn, username, isHome }) {
+function Navigation({ username, loggedIn, isHome }) {
   return (
-    <header className={`navigation ${isHome && 'navigation_theme_dark'}`}>
-      <p className="navigation__logo">NewsExplorer</p>
-      <ul className="navigation__links">
+    <nav className={`navigation ${isHome && 'navigation_theme_dark'}`}>
+      <Link
+        className={`navigation__logo ${
+          isHome && 'navigation__logo_theme_dark'
+        }`}
+        to="/"
+      >
+        NewsExplorer
+      </Link>
+      <ul
+        className={`navigation__links ${
+          isHome && 'navigation__links_theme_dark'
+        }`}
+      >
+        {/* Home */}
         <li className="navigation__links-item">
-          <a
-            href="googke.com"
+          <Link
+            to="/"
             className={`content-text navigation__url ${
               isHome && 'navigation__url_theme_dark'
             }`}
           >
             Home
-          </a>
+          </Link>
           {isHome && <div className="navigation__underline" id="home"></div>}
         </li>
+        {/* Saved Articles */}
         {loggedIn && (
           <li className="navigation__links-item">
-            <a
-              href="gogle.com"
+            <Link
+              to="/saved-news"
               className={`content-text navigation__url ${
                 isHome && 'navigation__url_theme_dark'
               }`}
             >
               Saved articles
-            </a>{' '}
+            </Link>{' '}
             {!isHome && (
               <div className="navigation__underline" id="saved"></div>
             )}
           </li>
         )}
+        {/* Sign in */}
         {!loggedIn && (
           <li className="navigation__links-item">
             <button
@@ -46,6 +61,7 @@ function Navigation({ loggedIn, username, isHome }) {
             </button>
           </li>
         )}
+        {/* Sign out  */}
         {loggedIn && (
           <li className="navigation__links-item">
             <button
@@ -54,7 +70,7 @@ function Navigation({ loggedIn, username, isHome }) {
               }`}
               id="signout"
             >
-              {username}{' '}
+              {username}
               <img
                 className="navigation__signout-icon"
                 src={isHome ? signoutIconLight : signoutIconDark}
@@ -64,7 +80,13 @@ function Navigation({ loggedIn, username, isHome }) {
           </li>
         )}
       </ul>
-    </header>
+      {/* Hamburger menu */}
+      <div
+        className={`navigation__hamburger ${
+          isHome && 'navigation__hamburger_theme_dark'
+        }`}
+      ></div>
+    </nav>
   );
 }
 

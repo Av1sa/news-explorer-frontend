@@ -38,7 +38,6 @@ function NewsCard({
           <div className="card__keyword">{keyword}</div>
         </>
       )}
-      {/* {!searching && loggedIn && } */}
     </li>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import fbIcon from '../../images/facebook_icon.svg';
 import ghIcon from '../../images/github_icon.svg';
@@ -11,15 +11,9 @@ function Footer() {
       <ul className="footer__list">
         <ul className="footer__links">
           <li className="footer__links-item">
-            {/* <Link to="/">Home</Link> */}
-            <a
-              href="google.com"
-              className="content-text footer__url"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <Link to="/" className="content-text footer__url">
               Home
-            </a>
+            </Link>
           </li>
           <li className="footer__links-item">
             <a

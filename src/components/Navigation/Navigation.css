@@ -17,6 +17,16 @@
   font-size: 20px;
   line-height: 24px;
   margin: 0;
+  color: #1a1b22;
+  text-decoration: none;
+}
+
+.navigation__logo_theme_dark {
+  color: #fff;
+}
+
+.navigation__logo {
+  cursor: pointer;
 }
 
 .navigation__links {
@@ -104,30 +114,41 @@
   background-color: #000;
 }
 
+.navigation__hamburger {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  width: 24px;
+  height: 24px;
+  background: url('../../images/hamburger_icon_dark.svg') center/cover no-repeat;
+  padding: 0;
+}
+
+.navigation__hamburger_theme_dark {
+  background: url('../../images/hamburger_icon.svg') center/cover no-repeat;
+}
+
 @media (max-width: 930px) {
   .navigation {
     padding: 12px 40px;
   }
-
   .navigation__url {
     font-size: 16px;
   }
-
   .navigation__button {
     padding: 8px 14px;
     font-size: 16px;
   }
-
   .navigation__button#signin {
     width: 152px;
     padding: 8px 12px;
   }
-
   .navigation__underline#home {
     right: -12px;
     bottom: -21px;
   }
-
   .navigation__underline#saved {
     right: -18px;
     bottom: -21px;
@@ -137,13 +158,55 @@
 @media (max-width: 670px) {
   .navigation {
     padding: 16px;
+    align-items: center;
+    /* background: #fff; */
   }
-
+  /* .navigation_theme_dark {
+    background: #1A1B22;
+  } */
   .navigation__logo {
     font-size: 16px;
   }
-
   .navigation__underline {
     display: none;
+  }
+  .navigation__links {
+    display: flex;
+    width: calc(100% - 32px);
+    position: absolute;
+    top: 56px;
+    left: 0;
+    flex-direction: column;
+    align-items: start;
+    padding: 16px 16px 24px;
+    z-index: 1;
+  }
+  .navigation__hamburger {
+    display: flex;
+  }
+  /* .navigation__hamburger:hover {
+    cursor: pointer;
+  } */
+  /* .navigation__hamburger:hover .navigation__links {
+    display: flex;
+  } */
+  /* .navigation__hamburger:hover .navigation {
+    background: #fff;
+  }
+  .navigation__hamburger:hover .navigation_theme_dark {
+    background: #1A1B22;
+  } */
+  .navigation__links_theme_dark {
+    background: #1A1B22;
+  }
+  .navigation__links-item {
+    margin: 0 0 22px;
+  }
+  .navigation__button {
+    width: 288px;
+    height: 56px;
+  }
+  .navigation__url {
+    line-height: 56px;
   }
 }

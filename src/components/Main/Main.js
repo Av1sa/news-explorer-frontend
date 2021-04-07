@@ -8,13 +8,13 @@ import './Main.css';
 
 export default function Main({ cards, searching, loggedIn, username }) {
   return (
-    <div>
+    <>
       <div className="main__bg">
-        <Navigation username={username} loggedIn={loggedIn} isHome={true}/>
+        <Navigation username={username} loggedIn={loggedIn} isHome={true} />
         <Header />
       </div>
       <SearchResults cards={cards} searching={searching} loggedIn={loggedIn} />
       <About />
-    </div>
+    </>
   );
 }

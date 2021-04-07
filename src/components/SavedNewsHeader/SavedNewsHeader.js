@@ -2,6 +2,7 @@ import React from 'react';
 import './SavedNewsHeader.css';
 
 function SavedNewsHeader({ username, cards }) {
+  
   // array of unique keywords
   const keywords = Array.from(new Set(cards.map((card) => card.keyword)));
 
@@ -21,7 +22,7 @@ function SavedNewsHeader({ username, cards }) {
   }
 
   return (
-    <div className="saved-news-header">
+    <header className="saved-news-header">
       <p className="content-text saved-news-header__page-title">
         Saved articles
       </p>
@@ -31,7 +32,7 @@ function SavedNewsHeader({ username, cards }) {
       <p className="content-text">
         By keywords: <span className="content-text_type_bold">{desc}</span>
       </p>
-    </div>
+    </header>
   );
 }
 
