@@ -4,7 +4,9 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Navigation from '../Navigation/Navigation';
 
-function SavedNews({ cards, username, searching, loggedIn }) {
+function SavedNews({
+  cards, username, searching, loggedIn,
+}) {
   return (
     <>
       <Navigation username={username} loggedIn={loggedIn} isHome={false} />

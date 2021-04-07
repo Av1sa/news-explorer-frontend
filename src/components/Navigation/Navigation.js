@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
 import signoutIconDark from '../../images/signout_icon.svg';
 import signoutIconLight from '../../images/signout_icon_white.svg';
 
-function Navigation({ username, loggedIn, isHome }) {
+function Navigation({ username, loggedIn, isHome, onClick }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  
   return (
-    <nav className={`navigation ${isHome && 'navigation_theme_dark'}`}>
+    <nav
+      className={`navigation ${isHome && 'navigation_theme_dark'} ${
+        menuOpen && 'navigation__menu-open'
+      } ${menuOpen && isHome && 'navigation__menu-open_theme_dark'}`}
+    >
       <Link
         className={`navigation__logo ${
           isHome && 'navigation__logo_theme_dark'
@@ -18,6 +25,8 @@ function Navigation({ username, loggedIn, isHome }) {
       <ul
         className={`navigation__links ${
           isHome && 'navigation__links_theme_dark'
+        } ${menuOpen && 'navigation__links-menu-open'} ${
+          isHome && menuOpen && 'navigation__links-menu-open_theme_dark'
         }`}
       >
         {/* Home */}
@@ -30,7 +39,7 @@ function Navigation({ username, loggedIn, isHome }) {
           >
             Home
           </Link>
-          {isHome && <div className="navigation__underline" id="home"></div>}
+          {isHome && <div className="navigation__underline" id="home" />}
         </li>
         {/* Saved Articles */}
         {loggedIn && (
@@ -43,19 +52,19 @@ function Navigation({ username, loggedIn, isHome }) {
             >
               Saved articles
             </Link>{' '}
-            {!isHome && (
-              <div className="navigation__underline" id="saved"></div>
-            )}
+            {!isHome && <div className="navigation__underline" id="saved" />}
           </li>
         )}
         {/* Sign in */}
         {!loggedIn && (
           <li className="navigation__links-item">
             <button
+              type="button"
               className={`content-text navigation__button ${
                 isHome && 'navigation__button_theme_dark'
               }`}
               id="signin"
+              onClick={onClick}
             >
               Sign in
             </button>
@@ -65,6 +74,7 @@ function Navigation({ username, loggedIn, isHome }) {
         {loggedIn && (
           <li className="navigation__links-item">
             <button
+              type="button"
               className={`content-text navigation__button ${
                 isHome && 'navigation__button_theme_dark'
               }`}
@@ -75,7 +85,7 @@ function Navigation({ username, loggedIn, isHome }) {
                 className="navigation__signout-icon"
                 src={isHome ? signoutIconLight : signoutIconDark}
                 alt="Signout icon"
-              ></img>
+              />
             </button>
           </li>
         )}
@@ -84,8 +94,13 @@ function Navigation({ username, loggedIn, isHome }) {
       <div
         className={`navigation__hamburger ${
           isHome && 'navigation__hamburger_theme_dark'
+        } ${menuOpen && 'navigation__hamburger-close'} ${
+          menuOpen && isHome && 'navigation__hamburger-close_theme_dark'
         }`}
-      ></div>
+        onClick={() => {
+          setMenuOpen(!menuOpen);
+        }}
+      />
     </nav>
   );
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import './SavedNewsHeader.css';
 
 function SavedNewsHeader({ username, cards }) {
-  
   // array of unique keywords
   const keywords = Array.from(new Set(cards.map((card) => card.keyword)));
 
@@ -27,10 +26,16 @@ function SavedNewsHeader({ username, cards }) {
         Saved articles
       </p>
       <h2 className="content-title saved-news-header__title">
-        {username}, you have {cards.length} saved articles
+        {username}
+        , you have
+        {cards.length}
+        {' '}
+        saved articles
       </h2>
       <p className="content-text">
-        By keywords: <span className="content-text_type_bold">{desc}</span>
+        By keywords:
+        {' '}
+        <span className="content-text_type_bold">{desc}</span>
       </p>
     </header>
   );
