@@ -10,7 +10,7 @@ const cards = [
     text:
       "Ever since I read Richard Louv's influential book, 'Last Child in the Woods', the idea of having a special 'sit spot' has stuck with me. This advice, which Louv attributes to nature educator Jon Young, is for both adults and children to find...",
     source: 'treehugger',
-    keyword: 'Nature',
+    keyword: 'Wild Nature',
     image: cardImg1,
   },
   {
@@ -26,6 +26,66 @@ const cards = [
   },
   {
     id: '003',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Parks',
+    image: cardImg3,
+  },
+  {
+    id: '004',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Parks',
+    image: cardImg3,
+  },
+  {
+    id: '005',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Nature',
+    image: cardImg3,
+  },
+  {
+    id: '006',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Nature',
+    image: cardImg3,
+  },
+  {
+    id: '007',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Nature',
+    image: cardImg3,
+  },
+  {
+    id: '008',
+    date: 'October 19, 2020',
+    title: 'Grand Teton Renews Historic Crest Trail',
+    text:
+      '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be...',
+    source: 'National parks traveler',
+    keyword: 'Nature',
+    image: cardImg3,
+  },
+  {
+    id: '009',
     date: 'October 19, 2020',
     title: 'Grand Teton Renews Historic Crest Trail',
     text:
