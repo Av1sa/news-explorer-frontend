@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import InfoTooltip from '../Popup/InfoTooltip';
 import PopupSignin from '../Popup/PopupSignin';
 import PopupSignup from '../Popup/PopupSignup';
+import newsApi from '../../utils/NewsApi';
 
 function App() {
   const [signinPopupOpen, setSigninPopupOpen] = useState(false);
@@ -15,6 +16,11 @@ function App() {
   const [isSuccessTooltipOpen, setIsSuccessTooltipOpen] = useState(false);
   const [isErrorTooltipOpen, setIsErrorTooltipOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [keyword, setKeyword] = useState([]);
+  const [found, setFound] = useState(false);
+  const [nothingFound, setNothingFound] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const closeAllPopups = () => {
     setSigninPopupOpen(false);
@@ -34,6 +40,7 @@ function App() {
     return () => {
       document.removeEventListener('keyup', closeOnEscape);
     };
+    // eslint-disable-next-line
   }, []);
 
   const handleSigninPopupLinkClick = () => {
@@ -63,16 +70,40 @@ function App() {
     setSigninPopupOpen(true);
   };
 
+  const handleSearchSubmit = (keyword) => {
+    setKeyword(keyword);
+    setFound(false);
+    setNothingFound(false);
+    setIsLoading(true);
+    newsApi
+      .getCards(keyword)
+      .then((res) => {
+        setIsLoading(false);
+        if (res.totalResults === 0) {
+          setNothingFound(true);
+        } else {
+          setFound(true);
+          setArticles(res.articles);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="app">
       <Switch>
         <Route exact path="/">
           <Main
-            cards={cards}
+            cards={articles}
             username="Hamlet"
+            keyword={keyword}
             searching
             loggedIn={loggedIn}
-            onClick={handleSigninBtnClick}
+            onSigninBtnClick={handleSigninBtnClick}
+            onSearchSubmit={handleSearchSubmit}
+            found={found}
+            nothingFound={nothingFound}
+            isLoading={isLoading}
           />
         </Route>
         <Route path="/saved-news">

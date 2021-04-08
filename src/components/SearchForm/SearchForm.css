@@ -42,6 +42,11 @@
   background: #2A65CC;
 }
 
+.search__button:disabled {
+  background: #E6E8EB;
+  color: #B6BCBF;
+}
+
 @media(max-width: 768px) {
   .search {
     max-width: 448px;

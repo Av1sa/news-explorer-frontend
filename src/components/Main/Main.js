@@ -3,6 +3,8 @@ import Navigation from '../Navigation/Navigation';
 import About from '../About/About';
 import Header from '../Header/Header';
 import SearchResults from '../SearchResults/SearchResults';
+import Preloader from '../SearchResults/Preloader';
+import NothingFound from '../SearchResults/NothingFound';
 import './Main.css';
 
 export default function Main({
@@ -10,7 +12,12 @@ export default function Main({
   searching,
   loggedIn,
   username,
-  onClick,
+  keyword,
+  onSigninBtnClick,
+  onSearchSubmit,
+  nothingFound,
+  isLoading,
+  found
 }) {
   return (
     <>
@@ -18,12 +25,21 @@ export default function Main({
         <Navigation
           username={username}
           loggedIn={loggedIn}
-          isHome
-          onClick={onClick}
+          isHome={searching}
+          onClick={onSigninBtnClick}
         />
-        <Header />
+        <Header onSearchSubmit={onSearchSubmit} />
       </div>
-      <SearchResults cards={cards} searching={searching} loggedIn={loggedIn} />
+      {isLoading && <Preloader />}
+      {nothingFound && <NothingFound />}
+      {found && (
+        <SearchResults
+          cards={cards}
+          searching={searching}
+          loggedIn={loggedIn}
+          keyword={keyword}
+        />
+      )}
       <About />
     </>
   );

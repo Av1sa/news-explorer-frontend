@@ -10,9 +10,9 @@ function PopupSignin({ isOpen, onClose, onSigninPopupLinkClick, onSigninSubmit }
     onSigninPopupLinkClick();
   };
 
-  const handleSubmit = () => {
-    onSigninSubmit();
-  };
+  // const handleSubmit = () => {
+  //   onSigninSubmit();
+  // };
   const popupSigninChildren = () => (
     <>
       <label className="popup__label">
@@ -49,7 +49,7 @@ function PopupSignin({ isOpen, onClose, onSigninPopupLinkClick, onSigninSubmit }
         children={popupSigninChildren()}
         isOpen={isOpen}
         onClose={onClose}
-        onSubmit={handleSubmit}
+        onSubmit={onSigninSubmit}
         linkText="Sign up"
         onLinkClick={handleLinkClick}
       />

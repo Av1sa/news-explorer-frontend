@@ -7,7 +7,6 @@ import signoutIconLight from '../../images/signout_icon_white.svg';
 function Navigation({ username, loggedIn, isHome, onClick }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  
   return (
     <nav
       className={`navigation ${isHome && 'navigation_theme_dark'} ${

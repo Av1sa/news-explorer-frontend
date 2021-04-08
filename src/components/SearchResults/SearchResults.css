@@ -29,22 +29,11 @@
   opacity: 0.9;
 }
 
-.nothing-found {
-  padding: 0;
-  flex-direction: column;
-  align-items: center;
-  display: none;
-}
-
-.nothing-found_mode_visible {
-  display: flex;
-}
-
-.nothing-found__icon {
+.search-results__nf-icon {
   margin: 0 0 24px;
 }
 
-.nothing-found__title {
+.search-results__nf-title {
   font-family: Roboto Slab;
   font-weight: 400;
   font-size: 26px;
@@ -53,21 +42,19 @@
   text-align: center;
 }
 
-.nothing-found__text {
+.search-results__text {
   color: #b6bcbf;
   text-align: center;
-  max-width: 310px;
+  max-width: 310px; 
 }
 
 @media (max-width: 910px) {
   .search-results {
     padding: 40px;
   }
-
   .search-results__title {
     margin-bottom: 32px;
   }
-
   .search-results__button {
     margin-top: 32px;
     width: 240px;
@@ -79,7 +66,6 @@
   .search-results {
     padding: 32px 16px;
   }
-
   .search-results__title {
     margin-bottom: 58px;
   }
@@ -89,22 +75,11 @@
   }
 }
 
-.loading {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-}
-
-.loading_mode_visible{
-  display: flex;
-}
-
-.loading__preloader {
+.search-results__preloader {
   display: block;
   width: 74px;
   height: 74px;
   border: 1px solid #968f8f;
-  
   border-bottom-color: #d1d2d6;
   border-radius: 50%;
   animation: spin 0.75s infinite linear;
@@ -115,8 +90,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.loading__text {
-  color: #b6bcbf;
 }
