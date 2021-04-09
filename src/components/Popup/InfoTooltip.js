@@ -1,12 +1,15 @@
 import React from 'react';
-import * as tooltips from '../../utils/const';
+import {
+  REGISTRATION_SUCCESSFULLY_COMPLETED,
+  REGISTRATION_FAILED,
+} from '../../utils/const';
 import './Popup.css';
 
 function InfoTooltip({ isOpen, onClose, type, onLinkClick }) {
   const text =
     type === 'success'
-      ? tooltips.REGISTRATION_SUCCESSFULLY_COMPLETED
-      : tooltips.REGISTRATION_FAILED;
+      ? REGISTRATION_SUCCESSFULLY_COMPLETED
+      : REGISTRATION_FAILED;
 
   const handleLinkClick = () => {
     onLinkClick();

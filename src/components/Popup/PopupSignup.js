@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './Popup.css';
 import PopupWithForm from './PopupWithForm';
 
-function PopupSignup({ isOpen, onClose, onSignupPopupLinkClick, onSignupSubmit }) {
+function PopupSignup({
+  isOpen,
+  onClose,
+  onSignupPopupLinkClick,
+  onSignupSubmit,
+}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
 
-  const handleSubmit = (e) => {
-    onSignupSubmit()
-  };
   const handleLinkClick = () => {
     onSignupPopupLinkClick();
   };
@@ -61,7 +63,7 @@ function PopupSignup({ isOpen, onClose, onSignupPopupLinkClick, onSignupSubmit }
         children={popupSignupChildren()}
         isOpen={isOpen}
         onClose={onClose}
-        onSubmit={handleSubmit}
+        onSubmit={onSignupSubmit}
         linkText="Sign in"
         onLinkClick={handleLinkClick}
       />

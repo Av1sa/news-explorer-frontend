@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import './Popup.css';
 import PopupWithForm from './PopupWithForm';
 
-function PopupSignin({ isOpen, onClose, onSigninPopupLinkClick, onSigninSubmit }) {
+function PopupSignin({
+  isOpen,
+  onClose,
+  onSigninPopupLinkClick,
+  onSigninSubmit,
+}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,9 +15,6 @@ function PopupSignin({ isOpen, onClose, onSigninPopupLinkClick, onSigninSubmit }
     onSigninPopupLinkClick();
   };
 
-  // const handleSubmit = () => {
-  //   onSigninSubmit();
-  // };
   const popupSigninChildren = () => (
     <>
       <label className="popup__label">

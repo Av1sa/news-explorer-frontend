@@ -1,6 +1,7 @@
 import React from 'react';
 import './NewsCard.css';
-import * as tooltips from '../../utils/const';
+import { SIGNIN_TO_SAVE_ARTICLES, REMOVE_FROM_SAVED } from '../../utils/const';
+import { formatDate } from '../../utils/utils';
 
 function NewsCard({
   image,
@@ -19,7 +20,7 @@ function NewsCard({
         style={{ backgroundImage: `url(${image})` }}
       />
       <div className="card__info">
-        <p className="content-text card__date">{date}</p>
+        <p className="content-text card__date">{formatDate(date)}</p>
         <h3 className="card__title">{title}</h3>
         <p className="card__text">{text}</p>
         <p className="card__source">{source}</p>
@@ -31,11 +32,11 @@ function NewsCard({
         }`}
       />
       {searching && !loggedIn && (
-        <div className="card__tooltip">{tooltips.SIGNIN_TO_SAVE_ARTICLES}</div>
+        <div className="card__tooltip">{SIGNIN_TO_SAVE_ARTICLES}</div>
       )}
       {!searching && loggedIn && (
         <>
-          <div className="card__tooltip">{tooltips.REMOVE_FROM_SAVED}</div>
+          <div className="card__tooltip">{REMOVE_FROM_SAVED}</div>
           <div className="card__keyword">{keyword}</div>
         </>
       )}
