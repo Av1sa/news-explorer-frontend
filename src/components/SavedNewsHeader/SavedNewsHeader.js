@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './SavedNewsHeader.css';
 import { countKeywords, sortKeywords, createDesc } from '../../utils/utils';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function SavedNewsHeader({ username, cards }) {
-  const sortedKeywords = sortKeywords(countKeywords(cards));
+function SavedNewsHeader({ savedArticles }) {
+  const sortedKeywords = sortKeywords(countKeywords(savedArticles));
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="saved-news-header">
@@ -11,7 +13,7 @@ function SavedNewsHeader({ username, cards }) {
         Saved articles
       </p>
       <h2 className="content-title saved-news-header__title">
-        {username}, you have {cards.length} saved articles
+        {currentUser.name}, you have {savedArticles.length} saved articles
       </h2>
       <p className="content-text">
         By keywords:{' '}

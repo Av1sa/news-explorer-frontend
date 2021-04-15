@@ -11,33 +11,36 @@ export default function Main({
   cards,
   searching,
   loggedIn,
-  username,
   keyword,
   onSigninBtnClick,
+  onSignOutBtnClick,
   onSearchSubmit,
   nothingFound,
+  keywordError,
   isLoading,
-  found
+  found,
+  onCardIconClick
 }) {
   return (
     <>
       <div className="main__bg">
         <Navigation
-          username={username}
           loggedIn={loggedIn}
           isHome={searching}
-          onClick={onSigninBtnClick}
+          onSignIn={onSigninBtnClick}
+          onSignOut={onSignOutBtnClick}
         />
         <Header onSearchSubmit={onSearchSubmit} />
       </div>
       {isLoading && <Preloader />}
-      {nothingFound && <NothingFound />}
+      {nothingFound !== '' && <NothingFound type={nothingFound}/>}
       {found && (
         <SearchResults
           cards={cards}
           searching={searching}
           loggedIn={loggedIn}
           keyword={keyword}
+          onCardIconClick={onCardIconClick}
         />
       )}
       <About />

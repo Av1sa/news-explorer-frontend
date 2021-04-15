@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SavedNews.css';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Navigation from '../Navigation/Navigation';
 
-function SavedNews({ cards, username, searching, loggedIn }) {
+function SavedNews({
+  savedArticles,
+  searching,
+  loggedIn,
+  onSigninBtnClick,
+  onSignOutBtnClick,
+  onCardIconClick,
+  onMount,
+}) {
+  useEffect(() => {
+    onMount();
+  }, []);
   return (
     <>
-      <Navigation username={username} loggedIn={loggedIn} isHome={searching} />
-      <SavedNewsHeader cards={cards} username={username} />
-      <div className="saved-news__container">
-        <NewsCardList cards={cards} searching={searching} loggedIn={loggedIn} />
-      </div>
+      <Navigation
+        loggedIn={loggedIn}
+        isHome={searching}
+        onSignIn={onSigninBtnClick}
+        onSignOut={onSignOutBtnClick}
+      />
+      <SavedNewsHeader savedArticles={savedArticles} />
+      {savedArticles && savedArticles.length > 0 && (
+        <div className="saved-news__container">
+          <NewsCardList
+            cards={savedArticles}
+            searching={searching}
+            loggedIn={loggedIn}
+            onIconClick={onCardIconClick}
+          />
+        </div>
+      )}
     </>
   );
 }

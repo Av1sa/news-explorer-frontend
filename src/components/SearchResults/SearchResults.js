@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SearchResults.css';
 
-function SearchResults({ cards, searching, loggedIn, keyword }) {
+function SearchResults({
+  cards,
+  searching,
+  loggedIn,
+  keyword,
+  onCardIconClick,
+}) {
   const [numCardsToShow, setNumCardsToShow] = useState(3);
   const [cardsToShow, setCardsToShow] = useState([]);
   const [btnVisible, setBtnVisible] = useState(numCardsToShow < cards.length);
@@ -20,6 +26,7 @@ function SearchResults({ cards, searching, loggedIn, keyword }) {
         searching={searching}
         loggedIn={loggedIn}
         keyword={keyword}
+        onIconClick={onCardIconClick}
       />
       {btnVisible && (
         <button

@@ -1,13 +1,15 @@
-import { API_KEY, MAX_NUM_ARTICLES, DATE_FROM, DATE_TO } from '../utils/const';
+import {
+  API_KEY,
+  MAX_NUM_ARTICLES,
+  DATE_FROM,
+  DATE_TO,
+  BASE_URL,
+} from '../utils/const';
 
 class NewsApi {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
-  }
-
-  _getResponseData(res) {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   }
 
   //GET Search cards
@@ -17,12 +19,12 @@ class NewsApi {
       {
         headers: this.headers,
       },
-    ).then((res) => this._getResponseData(res));
+    ).then((res) => res.json());
   }
 }
 
 const newsApi = new NewsApi({
-  baseUrl: 'https://nomoreparties.co/news/v2',
+  baseUrl: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

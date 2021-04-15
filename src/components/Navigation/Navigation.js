@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import signoutIconDark from '../../images/signout_icon.svg';
 import signoutIconLight from '../../images/signout_icon_white.svg';
 
-function Navigation({ username, loggedIn, isHome, onClick }) {
+function Navigation({ loggedIn, isHome, onSignIn, onSignOut }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const currentUser = useContext(CurrentUserContext);
   return (
     <nav
       className={`navigation ${isHome && 'navigation_theme_dark'} ${
@@ -63,7 +64,7 @@ function Navigation({ username, loggedIn, isHome, onClick }) {
                 isHome && 'navigation__button_theme_dark'
               }`}
               id="signin"
-              onClick={onClick}
+              onClick={onSignIn}
             >
               Sign in
             </button>
@@ -78,8 +79,9 @@ function Navigation({ username, loggedIn, isHome, onClick }) {
                 isHome && 'navigation__button_theme_dark'
               }`}
               id="signout"
+              onClick={onSignOut}
             >
-              {username}
+              {currentUser.name}
               <img
                 className="navigation__signout-icon"
                 src={isHome ? signoutIconLight : signoutIconDark}

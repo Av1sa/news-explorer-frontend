@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 function SearchForm({ onSubmit }) {
   const [keyword, setKeyword] = useState('');
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onSubmit(keyword);
   };
   return (
@@ -17,7 +18,6 @@ function SearchForm({ onSubmit }) {
       <button
         type="submit"
         className="content-text search__button"
-        disabled={keyword === ''}
       >
         Search
       </button>
