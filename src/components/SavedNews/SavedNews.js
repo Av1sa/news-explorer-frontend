@@ -15,7 +15,9 @@ function SavedNews({
 }) {
   useEffect(() => {
     onMount();
+    // eslint-disable-next-line
   }, []);
+  
   return (
     <>
       <Navigation

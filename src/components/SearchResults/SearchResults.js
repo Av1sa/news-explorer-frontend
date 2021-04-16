@@ -8,8 +8,9 @@ function SearchResults({
   loggedIn,
   keyword,
   onCardIconClick,
+  numCardsToShow,
+  onMoreCardsClick,
 }) {
-  const [numCardsToShow, setNumCardsToShow] = useState(3);
   const [cardsToShow, setCardsToShow] = useState([]);
   const [btnVisible, setBtnVisible] = useState(numCardsToShow < cards.length);
 
@@ -18,9 +19,15 @@ function SearchResults({
     setCardsToShow(cards.slice(0, numCardsToShow));
   }, [cards, numCardsToShow]);
 
+  const handleClick = () => {
+    onMoreCardsClick(3);
+  };
+
   return (
     <div className="search-results">
-      <h2 className="content-title search-results__title">Search results</h2>
+      <h2 className="content-title search-results__title">
+        Search results: {keyword}
+      </h2>
       <NewsCardList
         cards={cardsToShow}
         searching={searching}
@@ -32,7 +39,7 @@ function SearchResults({
         <button
           type="button"
           className="content-text search-results__button"
-          onClick={() => setNumCardsToShow(numCardsToShow + 3)}
+          onClick={handleClick}
         >
           Show more
         </button>

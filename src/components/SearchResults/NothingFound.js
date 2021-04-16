@@ -19,6 +19,8 @@ function NothingFound({ type }) {
     case 'data-error':
       text = DATA_ERROR;
       break;
+    default:
+      break;
   }
   return (
     <div className="search-results">

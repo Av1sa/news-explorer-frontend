@@ -12,7 +12,7 @@ function PopupWithForm({
   onSubmit,
   onLinkClick,
   onInputChange,
-  onReset
+  onReset,
 }) {
   const handleClick = (e) => {
     if (e.target.classList.contains('popup')) {
@@ -44,7 +44,7 @@ function PopupWithForm({
             required
             id="email-input"
             name="email"
-            value={values.email}
+            value={values.email || ''}
             onChange={onInputChange}
           />
           <span className="popup__input-error" id="email-input-error">
@@ -61,7 +61,7 @@ function PopupWithForm({
             required
             id="password-input"
             name="password"
-            value={values.password}
+            value={values.password || ''}
             onChange={onInputChange}
           />
           <span className="popup__input-error" id="password-input-error">
@@ -79,7 +79,7 @@ function PopupWithForm({
                 placeholder="Enter your username"
                 required
                 id="username-input"
-                value={values.username}
+                value={values.username || ''}
                 name="username"
                 onChange={onInputChange}
               />

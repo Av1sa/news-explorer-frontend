@@ -9,7 +9,7 @@ function NewsCardList({ cards, searching, loggedIn, keyword, onIconClick }) {
       {cards.map((card, index) => (
         <NewsCard
           card={card}
-          keyword={keyword}
+          searchWord={keyword}
           searching={searching}
           loggedIn={loggedIn}
           key={index}

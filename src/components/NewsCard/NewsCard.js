@@ -4,7 +4,13 @@ import { SIGNIN_TO_SAVE_ARTICLES, REMOVE_FROM_SAVED } from '../../utils/const';
 import { formatDate } from '../../utils/utils';
 import noImage from '../../images/no_image_available.jpeg';
 
-function NewsCard({ card, keyword, searching, loggedIn, onIconClick }) {
+function NewsCard({
+  card,
+  searchWord,
+  searching,
+  loggedIn,
+  onIconClick
+}) {
   const cardModel = searching
     ? {
         title: card.title,
@@ -13,10 +19,12 @@ function NewsCard({ card, keyword, searching, loggedIn, onIconClick }) {
         source: card.source.name,
         link: card.url,
         image: card.urlToImage,
-        keyword: keyword,
+        keyword: searchWord,
+        isSaved: card.isSaved,
+        _id: card._id || ''
       }
     : card;
-  const { title, text, date, source, link, image } = cardModel;
+  const { title, text, date, source, link, image, keyword, isSaved } = cardModel;
 
   const handleClick = (e) => {
     if (!e.target.classList.contains('card__icon')) {
@@ -24,8 +32,8 @@ function NewsCard({ card, keyword, searching, loggedIn, onIconClick }) {
     }
   };
 
-  const handleIconClick = (e) => {
-    onIconClick(cardModel, e.target.classList);
+  const handleIconClick = () => {
+    onIconClick(cardModel);
   };
 
   return (
@@ -40,20 +48,34 @@ function NewsCard({ card, keyword, searching, loggedIn, onIconClick }) {
         <p className="card__text">{text}</p>
         <p className="card__source">{source}</p>
       </div>
-      <button
-        type="button"
-        className={`card__icon ${
-          searching ? 'card__icon_type_save' : 'card__icon_type_delete'
-        }`}
-        onClick={handleIconClick}
-      />
+      {searching && loggedIn && (
+        <button
+          type="button"
+          className={`card__icon ${
+            isSaved ? 'card__icon_type_marked' : 'card__icon_type_save'
+          }`}
+          onClick={handleIconClick}
+        ></button>
+      )}
       {searching && !loggedIn && (
-        <div className="card__tooltip">{SIGNIN_TO_SAVE_ARTICLES}</div>
+        <>
+          <button
+            type="button"
+            className="card__icon card__icon_type_save"
+            onClick={handleIconClick}
+          ></button>
+          <div className="card__tooltip">{SIGNIN_TO_SAVE_ARTICLES}</div>
+        </>
       )}
       {!searching && loggedIn && (
         <>
+          <button
+            type="button"
+            className="card__icon card__icon_type_delete"
+            onClick={handleIconClick}
+          />
           <div className="card__tooltip">{REMOVE_FROM_SAVED}</div>
-          <div className="card__keyword">{cardModel.keyword}</div>
+          <div className="card__keyword">{keyword}</div>
         </>
       )}
     </li>

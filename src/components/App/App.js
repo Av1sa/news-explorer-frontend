@@ -25,6 +25,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState('');
   const [currentUser, setCurrentUser] = useState({});
+  const [numCardsToShow, setNumCardsToShow] = useState(3);
 
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -39,6 +40,7 @@ function App() {
       ? setSigninPopupOpen(true)
       : setSigninPopupOpen(false);
     location.signin = false;
+    // eslint-disable-next-line
   }, [location, loggedIn]);
 
   useEffect(() => {
@@ -50,37 +52,43 @@ function App() {
   }, []);
 
   useEffect(() => {
+    checkIfSaved();
+    // eslint-disable-next-line
+  }, [location, articles, savedArticles]);
+
+  useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
       setToken(token);
       validateAndSetUser(token);
+      getSavedArticles();
+      if (
+        localStorage.getItem('savedSearch') &&
+        localStorage.getItem('keyword')
+      ) {
+        setArticles(JSON.parse(localStorage.getItem('savedSearch')));
+        setKeyword(localStorage.getItem('keyword'));
+        setFound(true);
+      }
     }
+    // eslint-disable-next-line
   }, [loggedIn]);
 
-  // Validate, register, login
-  const validateAndSetUser = (token) => {
+  // Get saved articles
+  const getSavedArticles = () => {
     mainApi
-      .validateUser(token)
+      .getSavedArticles(token)
       .then((data) => {
-        if (data.message) {
-          console.log(data.message);
-        } else {
-          setCurrentUser(data);
-          setLoggedIn(true);
+        if (!data.message) {
+          data.map((card) => (card.isSaved = true));
+          // TO DO does't update savedArticles when called from onCardIconClick
+          setSavedArticles(data);
         }
       })
       .catch((err) => console.log(err));
   };
 
-  const getSavedArticles = () => {
-    mainApi
-      .getSavedArticles(token)
-      .then((data) => setSavedArticles(data.message ? [] : data))
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  // Sign in, sign up, sign out
   const handleSignUp = (e) => {
     e.preventDefault();
     mainApi
@@ -103,6 +111,7 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
+
   const handleSignIn = (e) => {
     e.preventDefault();
     mainApi
@@ -121,6 +130,7 @@ function App() {
             setToken(data.token);
             validateAndSetUser(data.token);
             setSigninPopupOpen(false);
+            getSavedArticles();
           }
         }
       })
@@ -129,8 +139,23 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('savedSearch');
+    localStorage.removeItem('keyword');
     setToken('');
     setLoggedIn(false);
+    setSavedArticles([]);
+  };
+
+  const validateAndSetUser = (token) => {
+    mainApi
+      .validateUser(token)
+      .then((data) => {
+        if (!data.message) {
+          setCurrentUser(data);
+          setLoggedIn(true);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   // Popups
@@ -185,8 +210,12 @@ function App() {
           if (res.totalResults === 0) {
             setNothingFound('no-results');
           } else {
-            setFound(true);
             setArticles(res.articles);
+            setFound(true);
+            if (loggedIn) {
+              localStorage.setItem('savedSearch', JSON.stringify(res.articles));
+              localStorage.setItem('keyword', keyword);
+            }
           }
         })
         .catch((err) => console.log(err));
@@ -197,30 +226,64 @@ function App() {
   };
 
   // Card icon click
-  const handleCardIconClick = (card, classList) => {
-    if (loggedIn && classList.contains('card__icon_type_save')) {
-      mainApi
-        .saveArticle(card, token)
-        .then((article) => {
-          if (article) {
-            classList.remove('card__icon_type_save');
-            classList.add('card__icon_type_marked');
-          }
-        })
-        .catch((err) => console.log(err));
-    }
-    if (!loggedIn && classList.contains('card__icon_type_save')) {
+  const handleCardIconClick = (card) => {
+    if (loggedIn) {
+      if (!card.isSaved) {
+        mainApi
+          .saveArticle(
+            {
+              title: card.title,
+              text: card.text,
+              date: card.date,
+              source: card.source,
+              link: card.link,
+              image: card.image,
+              keyword: card.keyword,
+            },
+            token,
+          )
+          // .then(() => getSavedArticles())
+          .then((article) => {
+            card.isSaved = true;
+            card._id = article._id;
+            console.log('card saved:', card);
+            console.log('articles', articles);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        mainApi
+          .removeArticle(card._id, token)
+          // .then(() => getSavedArticles())
+          .then(() => {
+            card.isSaved = false;
+            card._id = '';
+            setArticles(articles)
+            console.log('card removed', card);
+            console.log('articles', articles);
+          })
+          .catch((err) => console.log(err));
+      }
+    } else {
       resetForm();
       setSigninPopupOpen(true);
     }
-    if (classList.contains('card__icon_type_delete')) {
-      mainApi
-        .removeArticle(card._id, token)
-        .then(() => getSavedArticles(token))
-        .catch((err) => console.log(err));
-    }
   };
 
+  // Mark saved articles in search results
+  const checkIfSaved = () => {
+    articles.forEach((article) => {
+      article.isSaved = false;
+      savedArticles.forEach((savedArticle) => {
+        if (savedArticle.link === article.url) {
+          article._id = savedArticle._id;
+          article.isSaved = true;
+        }
+      });
+    });
+    setArticles(articles);
+  };
+
+  // Forms validation
   const handleInputChange = (event) => {
     const target = event.target;
     const name = target.name;
@@ -229,7 +292,6 @@ function App() {
     setErrors({ ...errors, [name]: target.validationMessage });
     setIsValid(target.closest('form').checkValidity());
     setSubmitError('');
-    console.log('values from handleChange', values);
   };
 
   const resetForm = useCallback(
@@ -245,6 +307,10 @@ function App() {
     },
     [setValues, setErrors, setIsValid],
   );
+
+  const onMoreCardsClick = (num) => {
+    setNumCardsToShow(numCardsToShow + num);
+  };
 
   return (
     <div className="app">
@@ -263,6 +329,8 @@ function App() {
               nothingFound={nothingFound}
               isLoading={isLoading}
               onCardIconClick={handleCardIconClick}
+              onMoreCardsClick={onMoreCardsClick}
+              numCardsToShow={numCardsToShow}
             />
           </Route>
           <ProtectedRoute

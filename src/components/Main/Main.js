@@ -1,4 +1,3 @@
-import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import About from '../About/About';
 import Header from '../Header/Header';
@@ -16,10 +15,11 @@ export default function Main({
   onSignOutBtnClick,
   onSearchSubmit,
   nothingFound,
-  keywordError,
   isLoading,
   found,
-  onCardIconClick
+  onCardIconClick,
+  onMoreCardsClick,
+  numCardsToShow
 }) {
   return (
     <>
@@ -33,7 +33,7 @@ export default function Main({
         <Header onSearchSubmit={onSearchSubmit} />
       </div>
       {isLoading && <Preloader />}
-      {nothingFound !== '' && <NothingFound type={nothingFound}/>}
+      {nothingFound !== '' && <NothingFound type={nothingFound} />}
       {found && (
         <SearchResults
           cards={cards}
@@ -41,6 +41,8 @@ export default function Main({
           loggedIn={loggedIn}
           keyword={keyword}
           onCardIconClick={onCardIconClick}
+          onMoreCardsClick={onMoreCardsClick}
+          numCardsToShow={numCardsToShow}
         />
       )}
       <About />
