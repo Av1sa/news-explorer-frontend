@@ -1,7 +1,6 @@
 import React from 'react';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
-// import noImage from '../../images/no_image_available.jpeg';
 
 function NewsCardList({ cards, searching, loggedIn, keyword, onIconClick }) {
   return (
@@ -12,7 +11,7 @@ function NewsCardList({ cards, searching, loggedIn, keyword, onIconClick }) {
           searchWord={keyword}
           searching={searching}
           loggedIn={loggedIn}
-          key={index}
+          key={card._id || index}
           onIconClick={onIconClick}
         />
       ))}

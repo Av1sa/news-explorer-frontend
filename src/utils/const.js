@@ -10,7 +10,8 @@ const DATA_ERROR =
   'Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later.';
 const BAD_INPUT = 'Bad input. Try again.';
 
-const BASE_URL = 'https://nomoreparties.co/news/v2';
+const BASE_URL_NEWS_API = 'https://nomoreparties.co/news/v2';
+const BASE_URL_MAIN_API = 'http://localhost:3000';
 const API_KEY = '53c68f38f9c242baacd37c44cb2d76eb';
 const MAX_NUM_ARTICLES = 100;
 const DATE_FROM = Date.now() - 7 * 24 * 3600 * 1000;
@@ -29,5 +30,6 @@ export {
   ENTER_KEYWORD,
   BAD_INPUT,
   DATA_ERROR,
-  BASE_URL
+  BASE_URL_NEWS_API,
+  BASE_URL_MAIN_API
 };

@@ -11,13 +11,7 @@ function SavedNews({
   onSigninBtnClick,
   onSignOutBtnClick,
   onCardIconClick,
-  onMount,
 }) {
-  useEffect(() => {
-    onMount();
-    // eslint-disable-next-line
-  }, []);
-  
   return (
     <>
       <Navigation

@@ -20,7 +20,7 @@
 }
 
 .card__date {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
@@ -30,7 +30,7 @@
 
 .card__title {
   height: 60px;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', sans-serif;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
@@ -41,7 +41,7 @@
 
 .card__text {
   height: 110px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
@@ -52,7 +52,7 @@
 
 .card__source {
   height: 20px;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -104,7 +104,7 @@
 .card__tooltip {
   padding: 0 20px;
   height: 40px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -134,7 +134,7 @@
   left: 24px;
   height: 40px;
   padding: 0 22px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;

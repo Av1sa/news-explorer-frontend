@@ -19,7 +19,7 @@ export default function Main({
   found,
   onCardIconClick,
   onMoreCardsClick,
-  numCardsToShow
+  numCardsToShow,
 }) {
   return (
     <>

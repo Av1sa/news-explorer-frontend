@@ -3,7 +3,7 @@ import {
   MAX_NUM_ARTICLES,
   DATE_FROM,
   DATE_TO,
-  BASE_URL,
+  BASE_URL_NEWS_API,
 } from '../utils/const';
 
 class NewsApi {
@@ -24,7 +24,7 @@ class NewsApi {
 }
 
 const newsApi = new NewsApi({
-  baseUrl: BASE_URL,
+  baseUrl: BASE_URL_NEWS_API,
   headers: {
     'Content-Type': 'application/json',
   },

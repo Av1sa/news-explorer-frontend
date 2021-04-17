@@ -1,12 +1,10 @@
+import { BASE_URL_MAIN_API } from '../utils/const';
+
 class MainApi {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
   }
-
-  // _getResponseData(res) {
-  //   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  // }
 
   // Register user
   registerUser(data) {
@@ -71,7 +69,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: BASE_URL_MAIN_API,
   headers: {
     'Content-Type': 'application/json',
   },

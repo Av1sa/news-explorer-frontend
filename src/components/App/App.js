@@ -40,7 +40,6 @@ function App() {
       ? setSigninPopupOpen(true)
       : setSigninPopupOpen(false);
     location.signin = false;
-    // eslint-disable-next-line
   }, [location, loggedIn]);
 
   useEffect(() => {
@@ -48,13 +47,11 @@ function App() {
     return () => {
       document.removeEventListener('keyup', closeOnEscape);
     };
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     checkIfSaved();
-    // eslint-disable-next-line
-  }, [location, articles, savedArticles]);
+  }, [location, articles, savedArticles, loggedIn]);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -71,7 +68,6 @@ function App() {
         setFound(true);
       }
     }
-    // eslint-disable-next-line
   }, [loggedIn]);
 
   // Get saved articles
@@ -81,7 +77,6 @@ function App() {
       .then((data) => {
         if (!data.message) {
           data.map((card) => (card.isSaved = true));
-          // TO DO does't update savedArticles when called from onCardIconClick
           setSavedArticles(data);
         }
       })
@@ -242,24 +237,34 @@ function App() {
             },
             token,
           )
-          // .then(() => getSavedArticles())
           .then((article) => {
-            card.isSaved = true;
-            card._id = article._id;
-            console.log('card saved:', card);
-            console.log('articles', articles);
+            articles.map((item) => {
+              if (item.url === card.link) {
+                item.isSaved = true;
+                item._id = article._id;
+              }
+            });
+            setArticles(articles);
+            article.isSaved = true;
+            const newSavedArticles = [...savedArticles, article];
+            setSavedArticles(newSavedArticles);
           })
           .catch((err) => console.log(err));
       } else {
         mainApi
           .removeArticle(card._id, token)
-          // .then(() => getSavedArticles())
           .then(() => {
-            card.isSaved = false;
-            card._id = '';
-            setArticles(articles)
-            console.log('card removed', card);
-            console.log('articles', articles);
+            articles.map((item) => {
+              if (item.url === card.link) {
+                item.isSaved = false;
+                item._id = '';
+              }
+            });
+            setArticles(articles);
+            const newSavedArticles = savedArticles.filter(
+              (item) => item._id !== card._id,
+            );
+            setSavedArticles(newSavedArticles);
           })
           .catch((err) => console.log(err));
       }
@@ -271,16 +276,18 @@ function App() {
 
   // Mark saved articles in search results
   const checkIfSaved = () => {
-    articles.forEach((article) => {
-      article.isSaved = false;
-      savedArticles.forEach((savedArticle) => {
-        if (savedArticle.link === article.url) {
-          article._id = savedArticle._id;
-          article.isSaved = true;
-        }
+    if (articles.length > 0 && savedArticles.length > 0) {
+      articles.forEach((article) => {
+        article.isSaved = false;
+        savedArticles.forEach((savedArticle) => {
+          if (savedArticle.link === article.url) {
+            article._id = savedArticle._id;
+            article.isSaved = true;
+          }
+        });
       });
-    });
-    setArticles(articles);
+      setArticles(articles);
+    }
   };
 
   // Forms validation
@@ -343,7 +350,6 @@ function App() {
             onSigninBtnClick={handleSigninBtnClick}
             onSignOutBtnClick={handleSignOut}
             onCardIconClick={handleCardIconClick}
-            onMount={getSavedArticles}
           />
           <Route>
             <Redirect to="/" />
