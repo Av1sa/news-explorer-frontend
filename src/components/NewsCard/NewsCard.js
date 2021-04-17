@@ -29,10 +29,6 @@ function NewsCard({ card, searchWord, searching, loggedIn, onIconClick }) {
     isSaved,
   } = cardModel;
 
-  useEffect(() => {
-    
-  }, [card.isSaved])
-
   const handleClick = (e) => {
     if (!e.target.classList.contains('card__icon')) {
       window.open(link, '_blank');

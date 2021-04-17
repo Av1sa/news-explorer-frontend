@@ -276,9 +276,8 @@ function App() {
 
   // Mark saved articles in search results
   const checkIfSaved = () => {
-    if (articles.length > 0 && savedArticles.length > 0) {
+    if (savedArticles.length > 0) {
       articles.forEach((article) => {
-        article.isSaved = false;
         savedArticles.forEach((savedArticle) => {
           if (savedArticle.link === article.url) {
             article._id = savedArticle._id;
@@ -286,7 +285,8 @@ function App() {
           }
         });
       });
-      setArticles(articles);
+      const newArticles = articles;
+      setArticles(newArticles);
     }
   };
 
@@ -368,7 +368,6 @@ function App() {
           onSubmit={handleSignIn}
           onLinkClick={handleSigninPopupLinkClick}
           onInputChange={handleInputChange}
-          onReset={resetForm}
         />
         <PopupWithForm
           name="signup"

@@ -12,7 +12,6 @@ function PopupWithForm({
   onSubmit,
   onLinkClick,
   onInputChange,
-  onReset,
 }) {
   const handleClick = (e) => {
     if (e.target.classList.contains('popup')) {
@@ -31,7 +30,6 @@ function PopupWithForm({
           className="popup__form"
           name={name}
           onSubmit={onSubmit}
-          onReset={onReset}
           noValidate
         >
           <label className="popup__label" htmlFor="email">
