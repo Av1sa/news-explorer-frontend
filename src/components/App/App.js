@@ -10,7 +10,7 @@ import InfoTooltip from '../Popup/InfoTooltip';
 import newsApi from '../../utils/NewsApi';
 import mainApi from '../../utils/MainApi';
 import PopupWithForm from '../Popup/PopupWithForm';
-import { BAD_INPUT } from '../../utils/const';
+import { BAD_INPUT, NUM_CARDS_BEGIN_WITH } from '../../utils/const';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,7 +25,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState('');
   const [currentUser, setCurrentUser] = useState({});
-  const [numCardsToShow, setNumCardsToShow] = useState(3);
+  const [numCardsToShow, setNumCardsToShow] = useState(NUM_CARDS_BEGIN_WITH);
 
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});

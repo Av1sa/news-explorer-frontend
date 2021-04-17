@@ -17,6 +17,9 @@ const MAX_NUM_ARTICLES = 100;
 const DATE_FROM = Date.now() - 7 * 24 * 3600 * 1000;
 const DATE_TO = Date.now();
 
+const NUM_CARDS_BEGIN_WITH = 3;
+const NUM_CARDS_MORE = 3;
+
 export {
   API_KEY,
   DATE_FROM,
@@ -31,5 +34,7 @@ export {
   BAD_INPUT,
   DATA_ERROR,
   BASE_URL_NEWS_API,
-  BASE_URL_MAIN_API
+  BASE_URL_MAIN_API,
+  NUM_CARDS_MORE,
+  NUM_CARDS_BEGIN_WITH,
 };

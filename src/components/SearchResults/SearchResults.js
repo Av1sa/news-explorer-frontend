@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SearchResults.css';
+import { NUM_CARDS_MORE } from '../../utils/const';
 
 function SearchResults({
   cards,
@@ -20,7 +21,7 @@ function SearchResults({
   }, [cards, numCardsToShow]);
 
   const handleClick = () => {
-    onMoreCardsClick(3);
+    onMoreCardsClick(NUM_CARDS_MORE);
   };
 
   return (
