@@ -1,8 +1,5 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
-/* * {
-  border: solid red 1px;
-} */
 
 body {
   color: #1a1b22;

@@ -2,20 +2,17 @@ import React from 'react';
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 
-function NewsCardList({ cards, searching, loggedIn }) {
+function NewsCardList({ cards, searching, loggedIn, keyword, onIconClick }) {
   return (
     <ul className="card-list">
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <NewsCard
-          image={card.image}
-          date={card.date}
-          title={card.title}
-          text={card.text}
-          source={card.source}
-          keyword={card.keyword}
+          card={card}
+          searchWord={keyword}
           searching={searching}
           loggedIn={loggedIn}
-          key={card.id}
+          key={card._id || index}
+          onIconClick={onIconClick}
         />
       ))}
     </ul>

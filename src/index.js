@@ -5,10 +5,10 @@ import './index.css';
 import App from './components/App/App';
 
 ReactDOM.render(
-  <HashRouter>
-    <React.StrictMode>
+  <React.StrictMode>
+    <HashRouter>
       <App />
-    </React.StrictMode>
-  </HashRouter>,
+    </HashRouter>
+  </React.StrictMode>,
   document.getElementById('root'),
 );
