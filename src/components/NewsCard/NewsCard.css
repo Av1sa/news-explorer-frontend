@@ -138,13 +138,15 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
-  text-align: center;
+  text-align: start;
   color: #000;
   background: #fff;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
   display: flex;
+  text-transform: uppercase;
+  max-width: 250px;
 }
 
 @media (max-width: 1000px) {

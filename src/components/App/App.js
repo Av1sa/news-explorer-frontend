@@ -19,7 +19,7 @@ function App() {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   const [articles, setArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
-  const [keyword, setKeyword] = useState([]);
+  const [keyword, setKeyword] = useState('');
   const [found, setFound] = useState(false);
   const [nothingFound, setNothingFound] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +34,7 @@ function App() {
 
   const location = useLocation();
 
+  // Open sign in popup after redirect
   useEffect(() => {
     resetForm();
     !loggedIn && location.signin
@@ -42,6 +43,7 @@ function App() {
     location.signin = false;
   }, [location, loggedIn]);
 
+  // Close popup
   useEffect(() => {
     document.addEventListener('keyup', closeOnEscape);
     return () => {
@@ -49,10 +51,12 @@ function App() {
     };
   }, []);
 
+  // Mark saved articles in search results
   useEffect(() => {
     checkIfSaved();
-  }, [location, articles, savedArticles, loggedIn]);
+  }, [location, found, savedArticles, loggedIn]);
 
+  // Get data from local storage
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -66,22 +70,10 @@ function App() {
         setArticles(JSON.parse(localStorage.getItem('savedSearch')));
         setKeyword(localStorage.getItem('keyword'));
         setFound(true);
+        getArticles(keyword);
       }
     }
   }, [loggedIn]);
-
-  // Get saved articles
-  const getSavedArticles = () => {
-    mainApi
-      .getSavedArticles(token)
-      .then((data) => {
-        if (!data.message) {
-          data.map((card) => (card.isSaved = true));
-          setSavedArticles(data);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
 
   // Sign in, sign up, sign out
   const handleSignUp = (e) => {
@@ -188,13 +180,24 @@ function App() {
     setSigninPopupOpen(true);
   };
 
-  // Search
-  const handleSearchSubmit = (keyword) => {
-    setNothingFound('');
-    if (keyword !== '') {
-      setKeyword(keyword);
-      setFound(false);
-      setIsLoading(true);
+  // Get saved articles
+  const getSavedArticles = () => {
+    if (loggedIn) {
+      mainApi
+        .getSavedArticles(token)
+        .then((data) => {
+          if (!data.message) {
+            data.map((card) => (card.isSaved = true));
+            setSavedArticles(data);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  // Get news
+  const getArticles = (keyword) => {
+    if (keyword && keyword !== '') {
       newsApi
         .getCards(keyword)
         .then((res) => {
@@ -214,6 +217,17 @@ function App() {
           }
         })
         .catch((err) => console.log(err));
+    }
+  };
+
+  // Search
+  const handleSearchSubmit = (keyword) => {
+    setNothingFound('');
+    if (keyword !== '') {
+      setKeyword(keyword);
+      setFound(false);
+      setIsLoading(true);
+      getArticles(keyword);
     } else {
       setNothingFound('no-keyword');
       setFound(false);
@@ -238,7 +252,7 @@ function App() {
             token,
           )
           .then((article) => {
-            articles.map((item) => {
+            articles.forEach((item) => {
               if (item.url === card.link) {
                 item.isSaved = true;
                 item._id = article._id;
@@ -254,7 +268,7 @@ function App() {
         mainApi
           .removeArticle(card._id, token)
           .then(() => {
-            articles.map((item) => {
+            articles.forEach((item) => {
               if (item.url === card.link) {
                 item.isSaved = false;
                 item._id = '';
@@ -277,7 +291,8 @@ function App() {
   // Mark saved articles in search results
   const checkIfSaved = () => {
     if (savedArticles.length > 0) {
-      articles.forEach((article) => {
+      const newArticles = [...articles];
+      newArticles.forEach((article) => {
         savedArticles.forEach((savedArticle) => {
           if (savedArticle.link === article.url) {
             article._id = savedArticle._id;
@@ -285,7 +300,6 @@ function App() {
           }
         });
       });
-      const newArticles = articles;
       setArticles(newArticles);
     }
   };

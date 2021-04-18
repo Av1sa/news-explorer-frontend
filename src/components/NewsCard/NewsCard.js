@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './NewsCard.css';
 import { SIGNIN_TO_SAVE_ARTICLES, REMOVE_FROM_SAVED } from '../../utils/const';
 import { formatDate } from '../../utils/utils';
