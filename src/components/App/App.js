@@ -70,7 +70,6 @@ function App() {
         setArticles(JSON.parse(localStorage.getItem('savedSearch')));
         setKeyword(localStorage.getItem('keyword'));
         setFound(true);
-        getArticles(keyword);
       }
     }
   }, [loggedIn]);
@@ -131,6 +130,7 @@ function App() {
     setToken('');
     setLoggedIn(false);
     setSavedArticles([]);
+    setFound(false)
   };
 
   const validateAndSetUser = (token) => {
